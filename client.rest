@@ -1,0 +1,128 @@
+### Get 
+GET http://localhost:3001
+
+### Register a new account
+POST http://localhost:3001/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "meocam@foo.com",
+    "user_name" : "meocam",
+    "password" : "123456789"
+}
+
+### Delete an account (check user_id before running)
+DELETE http://localhost:3001/delete/users/23 HTTP/1.1
+Content-Type: application/json
+
+{
+    "password" : "1234567890"
+}
+
+### Login an account (check account existence before running):
+POST http://localhost:3001/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "meocam@foo.com",
+    "password" : "123456789"
+}
+
+### Change password of an account (switching between these two passwords):
+PUT http://localhost:3001/users/password HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "meocam@foo.com",
+    "password" : "123456789",
+    "new_pass" : "1234567890"
+}
+
+### Search an username:
+GET http://localhost:3001/search/users/ginger HTTP/1.1
+
+### Search a post title:
+GET http://localhost:3001/search/posts/tes HTTP/1.1
+
+### Fetch comment
+GET http://localhost:3001/posts/1/comments
+
+### Add a new post
+POST http://localhost:3001/posts HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": 23,
+    "title" : "New test post",
+    "post_content": "Test from REST Client"
+}
+
+### Add new comment
+POST http://localhost:3001/posts/3/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id" : 23,
+    "comment_content": "Updated new comment content"
+}
+
+### Edit a post
+PUT http://localhost:3001/posts/15 HTTP/1.1
+Content-Type: application/json
+
+{   
+    "user_id" : 19,
+    "title" : "GinGer Tea",
+    "post_content": "Updated new post content"
+}
+
+### Edit a comment
+PUT http://localhost:3001/posts/15/comments/18
+Content-Type: application/json
+
+{
+    "user_id" : 19,
+    "comment_content": "Update my comment"
+}
+
+### Delete a post
+DELETE http://localhost:3001/posts/1 HTTP/1.1
+Content-Type: application/json
+
+### Delete a comment
+DELETE http://localhost:3001/posts/1/comments/2 HTTP/1.1
+Content-Type: application/json
+
+### Get reacts of a post:
+GET http://localhost:3001/posts/1/reacts HTTP/1.1
+
+### Hit a reaction to a post:
+POST http://localhost:3001/posts/2/reacts HTTP/1.1
+Content-Type: application/json
+
+{
+    "react_id": 1,
+    "user_id": 23
+}
+
+### Delete a reaction to a post:
+DELETE http://localhost:3001/posts/1/reacts HTTP/1.1
+Content-Type: application/json
+
+{
+    "react_id": 1,
+    "user_id": 5
+}
+
+### Get all feedback
+GET http://localhost:3001/feedbacks
+
+### Send new feedback
+POST http://localhost:3001/feedbacks HTTP/1.1
+Content-Type: application/json
+
+{
+    "title" : "Try to send a feedback",
+    "content": "My new feedback",
+    "user_id": 2
+}
